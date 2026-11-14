@@ -2,7 +2,7 @@
 session_start();
 
 $returnToInput = $_GET['return_to'] ?? $_POST['return_to'] ?? '';
-$returnTo = is_string($returnToInput) && in_array($returnToInput, ['warehouse.php', 'dashboard.php?section=profit#product-profit-title'], true)
+$returnTo = is_string($returnToInput) && in_array($returnToInput, ['warehouse.php', 'index.php?section=profit#product-profit-title'], true)
     ? $returnToInput
     : 'products.php';
 

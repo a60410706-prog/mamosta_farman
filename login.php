@@ -30,7 +30,7 @@ require_once __DIR__ . '/includes/db.php';
 // 2) نەخشەی ڕۆڵەکان => پەڕەی مەبەست
 // ───────────────────────────────────────────────
 const ROLE_REDIRECTS = [
-    'admin'   => 'dashboard.php',
+    'admin'   => 'index.php',
     'cashier' => 'pos.php',
 ];
 

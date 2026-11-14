@@ -161,7 +161,7 @@ if ($editCategory && $_SERVER['REQUEST_METHOD'] !== 'POST') {
                 <p class="text-sm font-medium text-indigo-600">بەڕێوەبەرایەتی</p>
                 <h1 class="mt-1 text-xl font-bold text-slate-900">بەڕێوەبردنی پۆلێنەکان</h1>
             </div>
-            <a href="dashboard.php" class="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
+            <a href="index.php" class="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">
                 گەڕانەوە بۆ داشبۆرد
             </a>
         </div>

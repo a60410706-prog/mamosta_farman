@@ -21,7 +21,7 @@ if (!in_array($section, ['dashboard', 'categories', 'profit'], true)) {
 if ($section === 'dashboard') {
     $tileDefinitions = [
         ['label' => 'کاشێر', 'href' => 'pos.php', 'icon' => 'fa-cash-register', 'color' => 'blue', 'tables' => ['products', 'sales', 'sale_items', 'customers']],
-        ['label' => 'قازانج', 'href' => 'dashboard.php?section=profit', 'icon' => 'fa-chart-line', 'color' => 'violet', 'tables' => ['products', 'customers', 'sales', 'sale_items', 'expenses', 'exchange_rates']],
+        ['label' => 'قازانج', 'href' => 'index.php?section=profit', 'icon' => 'fa-chart-line', 'color' => 'violet', 'tables' => ['products', 'customers', 'sales', 'sale_items', 'expenses', 'exchange_rates']],
         ['label' => 'فرۆشتن', 'href' => 'reports.php', 'icon' => 'fa-cart-shopping', 'color' => 'emerald', 'tables' => ['sales', 'sale_items']],
         ['label' => 'گەڕاندنەوەی فرۆشتن', 'href' => 'returns.php', 'icon' => 'fa-arrow-rotate-left', 'color' => 'rose', 'tables' => ['returns', 'sales', 'products']],
         ['label' => 'پەیوەندییەکان', 'href' => 'contacts.php', 'icon' => 'fa-address-book', 'color' => 'violet', 'tables' => ['customers', 'suppliers']],
@@ -89,7 +89,7 @@ if ($section === 'categories') {
                         $stmt = $pdo->prepare('INSERT INTO categories (category_name) VALUES (:category_name)');
                         $stmt->execute([':category_name' => trim($category_name_input)]);
                         $_SESSION['categories_flash'] = 'پۆلێنەکە بە سەرکەوتوویی زیادکرا.';
-                        header('Location: dashboard.php?section=categories');
+                        header('Location: index.php?section=categories');
                         exit;
                     }
                 } elseif ($action === 'delete') {
@@ -105,7 +105,7 @@ if ($section === 'categories') {
                             $category_message = 'پۆلێنی داواکراو نەدۆزرایەوە.';
                         } else {
                             $_SESSION['categories_flash'] = 'پۆلێنەکە بە سەرکەوتوویی سڕایەوە.';
-                            header('Location: dashboard.php?section=categories');
+                            header('Location: index.php?section=categories');
                             exit;
                         }
                     }
@@ -407,7 +407,7 @@ require_once __DIR__ . '/includes/sidebar.php';
                     <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
                         <section class="rounded-xl bg-white p-6 shadow-sm">
                             <h3 class="mb-5 text-lg font-semibold text-slate-800">زیادکردنی پۆلێنی نوێ</h3>
-                            <form method="POST" action="dashboard.php?section=categories" class="space-y-4">
+                            <form method="POST" action="index.php?section=categories" class="space-y-4">
                                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['categories_csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>">
                                 <input type="hidden" name="action" value="add">
                                 <div>
@@ -443,7 +443,7 @@ require_once __DIR__ . '/includes/sidebar.php';
                                                     <td class="whitespace-nowrap px-6 py-4">
                                                         <div class="flex items-center gap-2">
                                                             <a href="categories.php?edit=<?php echo (int) $category['category_id']; ?>" class="rounded-lg border border-amber-200 px-3 py-1.5 font-medium text-amber-700 transition hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-amber-200">نوێکردنەوە</a>
-                                                            <form method="POST" action="dashboard.php?section=categories" onsubmit="return confirm('دڵنیایت لە سڕینەوەی ئەم پۆلێنە؟');">
+                                                            <form method="POST" action="index.php?section=categories" onsubmit="return confirm('دڵنیایت لە سڕینەوەی ئەم پۆلێنە؟');">
                                                                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['categories_csrf_token'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>">
                                                                 <input type="hidden" name="action" value="delete">
                                                                 <input type="hidden" name="category_id" value="<?php echo htmlspecialchars((string) $category['category_id'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>">
@@ -510,7 +510,7 @@ require_once __DIR__ . '/includes/sidebar.php';
                         <a href="exchange_rates.php" class="rounded-lg border border-amber-200 px-4 py-2 text-sm font-semibold text-amber-800 transition hover:bg-amber-50">
                             نوێکردنەوەی نرخی ئاڵوگۆڕ
                         </a>
-                        <a href="dashboard.php" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">
+                        <a href="index.php" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">
                             گەڕانەوە بۆ داشبۆرد
                         </a>
                     </div>
@@ -646,7 +646,7 @@ require_once __DIR__ . '/includes/sidebar.php';
                                                 </a>
                                             <?php else: ?>
                                                 <span class="block text-amber-700">نرخی کڕینی USD نییە</span>
-                                                <a href="products.php?edit=<?= (int) $productProfit['product_id'] ?>&amp;return_to=dashboard.php%3Fsection%3Dprofit%23product-profit-title" class="mt-1 inline-block text-xs font-semibold text-cyan-800 hover:text-cyan-950">
+                                                <a href="products.php?edit=<?= (int) $productProfit['product_id'] ?>&amp;return_to=index.php%3Fsection%3Dprofit%23product-profit-title" class="mt-1 inline-block text-xs font-semibold text-cyan-800 hover:text-cyan-950">
                                                     تۆمارکردنی نرخی USD
                                                 </a>
                                             <?php endif; ?>

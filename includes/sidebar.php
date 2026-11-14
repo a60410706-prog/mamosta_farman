@@ -1,7 +1,7 @@
 <?php
-$homeHref = ($_SESSION['role'] ?? '') === 'admin' ? 'dashboard.php' : 'pos.php';
+$homeHref = ($_SESSION['role'] ?? '') === 'admin' ? 'index.php' : 'pos.php';
 $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
-$showHomeLink = $currentPage !== 'dashboard.php' || ($_GET['section'] ?? 'dashboard') !== 'dashboard';
+$showHomeLink = $currentPage !== 'index.php' || ($_GET['section'] ?? 'dashboard') !== 'dashboard';
 ?>
 <div class="flex min-w-0 flex-1 flex-col overflow-y-auto">
     <header id="app-top-header" class="flex items-center justify-between bg-white px-4 py-4 shadow-sm sm:px-8">
