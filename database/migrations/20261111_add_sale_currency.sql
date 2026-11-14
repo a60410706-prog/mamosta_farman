@@ -1,0 +1,2 @@
+ALTER TABLE sales
+    ADD COLUMN currency CHAR(3) NOT NULL DEFAULT 'USD' AFTER net_amount;
